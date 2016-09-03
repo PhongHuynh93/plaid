@@ -125,8 +125,11 @@ public class HomeActivity extends Activity {
     private TextView noFiltersEmptyText;
     private ImageButton fabPosting;
     private GridLayoutManager layoutManager;
+
+//    todo bind resource item by butterknife
     @BindInt(R.integer.num_columns)
     int columns;
+
     private boolean connected = true;
     private boolean monitoringConnectivity = false;
 
