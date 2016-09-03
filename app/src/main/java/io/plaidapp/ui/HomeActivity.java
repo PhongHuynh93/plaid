@@ -107,17 +107,26 @@ public class HomeActivity extends Activity {
     private static final int RC_NEW_DESIGNER_NEWS_STORY = 4;
     private static final int RC_NEW_DESIGNER_NEWS_LOGIN = 5;
 
-    @BindView(R.id.drawer) DrawerLayout drawer;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.grid) RecyclerView grid;
-    @BindView(R.id.fab) ImageButton fab;
-    @BindView(R.id.filters) RecyclerView filtersList;
-    @BindView(android.R.id.empty) ProgressBar loading;
-    @Nullable @BindView(R.id.no_connection) ImageView noConnection;
+    @BindView(R.id.drawer)
+    DrawerLayout drawer;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.grid)
+    RecyclerView grid;
+    @BindView(R.id.fab)
+    ImageButton fab;
+    @BindView(R.id.filters)
+    RecyclerView filtersList;
+    @BindView(android.R.id.empty)
+    ProgressBar loading;
+    @Nullable
+    @BindView(R.id.no_connection)
+    ImageView noConnection;
     private TextView noFiltersEmptyText;
     private ImageButton fabPosting;
     private GridLayoutManager layoutManager;
-    @BindInt(R.integer.num_columns) int columns;
+    @BindInt(R.integer.num_columns)
+    int columns;
     private boolean connected = true;
     private boolean monitoringConnectivity = false;
 
@@ -134,7 +143,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-//         1
+//       todo  1 - make the screen go full
         drawer.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -150,19 +159,19 @@ public class HomeActivity extends Activity {
         designerNewsPrefs = DesignerNewsPrefs.get(this);
         filtersAdapter = new FilterAdapter(this, SourceManager.getSources(this),
                 new FilterAdapter.FilterAuthoriser() {
-            @Override
-            public void requestDribbbleAuthorisation(View sharedElement, Source forSource) {
-                Intent login = new Intent(HomeActivity.this, DribbbleLogin.class);
-                MorphTransform.addExtras(login,
-                        ContextCompat.getColor(HomeActivity.this, R.color.background_dark),
-                        sharedElement.getHeight() / 2);
-                ActivityOptions options =
-                        ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this,
-                                sharedElement, getString(R.string.transition_dribbble_login));
-                startActivityForResult(login,
-                        getAuthSourceRequestCode(forSource), options.toBundle());
-            }
-        });
+                    @Override
+                    public void requestDribbbleAuthorisation(View sharedElement, Source forSource) {
+                        Intent login = new Intent(HomeActivity.this, DribbbleLogin.class);
+                        MorphTransform.addExtras(login,
+                                ContextCompat.getColor(HomeActivity.this, R.color.background_dark),
+                                sharedElement.getHeight() / 2);
+                        ActivityOptions options =
+                                ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this,
+                                        sharedElement, getString(R.string.transition_dribbble_login));
+                        startActivityForResult(login,
+                                getAuthSourceRequestCode(forSource), options.toBundle());
+                    }
+                });
         dataManager = new DataManager(this, filtersAdapter) {
             @Override
             public void onDataLoaded(List<? extends PlaidItem> data) {
@@ -172,6 +181,7 @@ public class HomeActivity extends Activity {
         };
         adapter = new FeedAdapter(this, dataManager, columns, PocketUtils.isPocketInstalled(this));
 
+//        todo 5b - set adapter for recyclerview, listen when scroll, set anim the recyclerview
         grid.setAdapter(adapter);
         layoutManager = new GridLayoutManager(this, columns);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -205,7 +215,7 @@ public class HomeActivity extends Activity {
                 lpToolbar.rightMargin += insets.getSystemWindowInsetRight();
                 toolbar.setLayoutParams(lpToolbar);
 
-                // inset the grid top by statusbar+toolbar & the bottom by the navbar (don't clip)
+                // todo inset the grid top by statusbar+toolbar & the bottom by the navbar (don't clip)
                 grid.setPadding(
                         grid.getPaddingLeft() + insets.getSystemWindowInsetLeft(), // landscape
                         insets.getSystemWindowInsetTop() + ViewUtils.getActionBarSize
@@ -227,13 +237,13 @@ public class HomeActivity extends Activity {
                 lpPosting.rightMargin += insets.getSystemWindowInsetRight(); // landscape
                 postingStub.setLayoutParams(lpPosting);
 
-                // we place a background behind the status bar to combine with it's semi-transparent
-                // color to get the desired appearance.  Set it's height to the status bar height
+                // todo 4b we place a background behind the status bar to combine with it's semi-transparent color to get the desired appearance.  Set it's height to the status bar height
                 View statusBarBackground = findViewById(R.id.status_bar_background);
                 FrameLayout.LayoutParams lpStatus = (FrameLayout.LayoutParams)
                         statusBarBackground.getLayoutParams();
                 lpStatus.height = insets.getSystemWindowInsetTop();
                 statusBarBackground.setLayoutParams(lpStatus);
+                // end set độ cao của status bar.
 
                 // inset the filters list for the status bar / navbar
                 // need to set the padding end for landscape case
@@ -281,6 +291,15 @@ public class HomeActivity extends Activity {
         super.onPause();
     }
 
+    /**
+     * todo Called when an activity you launched with an activity transition exposes this Activity through a returning activity transition, giving you the resultCode and any additional data from it.
+     * todo postpone the transition  until our shared element is on-screen i.e. has been laid out
+     * todo scroll to the previous position
+     * chạy khi ta có transition từ activity sang activity kia, và act kia đang nav lại act này
+     *
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityReenter(int resultCode, Intent data) {
         if (data == null || resultCode != RESULT_OK
@@ -448,21 +467,24 @@ public class HomeActivity extends Activity {
     // listener for notifying adapter when data sources are deactivated
     private FilterAdapter.FiltersChangedCallbacks filtersChangedCallbacks =
             new FilterAdapter.FiltersChangedCallbacks() {
-        @Override
-        public void onFiltersChanged(Source changedFilter) {
-            if (!changedFilter.active) {
-                adapter.removeDataSource(changedFilter.key);
-            }
-            checkEmptyState();
-        }
+                @Override
+                public void onFiltersChanged(Source changedFilter) {
+                    if (!changedFilter.active) {
+                        adapter.removeDataSource(changedFilter.key);
+                    }
+                    checkEmptyState();
+                }
 
-        @Override
-        public void onFilterRemoved(Source removed) {
-            adapter.removeDataSource(removed.key);
-            checkEmptyState();
-        }
-    };
+                @Override
+                public void onFilterRemoved(Source removed) {
+                    adapter.removeDataSource(removed.key);
+                    checkEmptyState();
+                }
+            };
 
+    /**
+     * todo - add scroll listener that when we croll down, the toolbar ele is lower to hide itself
+     */
     private RecyclerView.OnScrollListener toolbarElevation = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -525,7 +547,7 @@ public class HomeActivity extends Activity {
 
                     // actually add the story to the grid
                     Story newStory = intent.getParcelableExtra(PostStoryService.EXTRA_NEW_STORY);
-                    adapter.addAndResort(Arrays.asList(new Story[]{ newStory }));
+                    adapter.addAndResort(Arrays.asList(new Story[]{newStory}));
                     break;
                 case PostStoryService.BROADCAST_ACTION_FAILURE:
                     // failure animation
@@ -737,10 +759,10 @@ public class HomeActivity extends Activity {
 
     /**
      * Highlight the new source(s) by:
-     *      1. opening the drawer
-     *      2. scrolling new source(s) into view
-     *      3. flashing new source(s) background
-     *      4. closing the drawer (if user hasn't interacted with it)
+     * 1. opening the drawer
+     * 2. scrolling new source(s) into view
+     * 3. flashing new source(s) background
+     * 4. closing the drawer (if user hasn't interacted with it)
      */
     private void highlightNewSources(final Source... sources) {
         final Runnable closeDrawerRunnable = new Runnable() {
@@ -823,7 +845,7 @@ public class HomeActivity extends Activity {
 
             connectivityManager.registerNetworkCallback(
                     new NetworkRequest.Builder()
-                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build(),
+                            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build(),
                     connectivityCallback);
             monitoringConnectivity = true;
         }

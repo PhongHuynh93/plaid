@@ -17,6 +17,7 @@
 
 <resources>
 
+    <!--todo 0 appliation theme-->
     <style name="Plaid" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/primary</item>
         <item name="android:colorBackground">@color/background_light</item>
@@ -30,6 +31,7 @@
         <item name="android:windowSharedElementsUseOverlay">false</item>
     </style>
 
+    <!--todo 0b - home theme-->
     <style name="Plaid.Home">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/immersive_bars</item>
@@ -261,7 +263,7 @@
         <item name="lineHeightHint">24sp</item>
     </style>
 
-    <!-- todo revert to material styles? -->
+    <!--  revert to material styles? -->
     <style name="TextAppearance.Comment" parent="@android:style/TextAppearance.Material.Body1">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/text_secondary_dark</item>

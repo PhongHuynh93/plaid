@@ -25,16 +25,19 @@
     android:clipToPadding="false"
     tools:context=".ui.HomeActivity">
 
+    <!--todo 3 - the content -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--todo 4 - this is a status bar, note the height is 0dp, but in the java file, we set its height-->
         <View
             android:id="@+id/status_bar_background"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/status_bar_back" />
 
+        <!--todo 5 RecyclerView-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grid"
             android:layout_width="match_parent"
@@ -100,7 +103,7 @@
 
     </FrameLayout>
 
-    <!-- filter drawer -->
+    <!-- todo 2 filter drawer on the end  -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/filters"
         android:layout_width="@dimen/drawer_width"

@@ -117,7 +117,7 @@ public class PlayerActivity extends Activity {
                 loadPlayer(username);
             }
         } else if (intent.getData() != null) {
-            // todo support url intents
+            //  support url intents
         }
 
         // setup immersive mode i.e. draw behind the system chrome & adjust insets

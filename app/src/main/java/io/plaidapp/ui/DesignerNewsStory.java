@@ -575,7 +575,7 @@ public class DesignerNewsStory extends Activity {
                 });
             } else {
                 upvoteStory.setActivated(false);
-                // TODO delete upvote. Not available in v1 API.
+                //  delete upvote. Not available in v1 API.
             }
 
         } else {
@@ -826,7 +826,7 @@ public class DesignerNewsStory extends Activity {
                                     DateUtils.SECOND_IN_MILLIS)
                                     .toString().toLowerCase());
                 }
-                // FIXME updating drawable doesn't seem to be working, just create a new one
+                //  updating drawable doesn't seem to be working, just create a new one
                 //((ThreadedCommentDrawable) holder.threadDepth.getDrawable())
                 //     .setDepth(comment.depth);
 
@@ -882,7 +882,7 @@ public class DesignerNewsStory extends Activity {
                             comment.vote_count--;
                             holder.commentVotes.setText(String.valueOf(comment.vote_count));
                             holder.commentVotes.setActivated(false);
-                            // TODO actually delete upvote
+                            //  actually delete upvote
                         }
                     } else {
                         needsLogin(holder.commentVotes, 0);

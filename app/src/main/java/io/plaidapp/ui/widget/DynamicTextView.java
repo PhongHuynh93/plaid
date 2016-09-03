@@ -31,7 +31,7 @@ import android.widget.TextView;
 import io.plaidapp.R;
 
 /**
- * TODO: document your custom view class.
+ * : document your custom view class.
  */
 public class DynamicTextView extends TextView {
 
