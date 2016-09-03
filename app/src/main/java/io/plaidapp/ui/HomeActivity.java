@@ -275,6 +275,7 @@ public class HomeActivity extends Activity {
         checkEmptyState();
     }
 
+    // todo 5 - check connectivity to load new data evertime the app resume
     @Override
     protected void onResume() {
         super.onResume();
@@ -282,6 +283,7 @@ public class HomeActivity extends Activity {
         checkConnectivity();
     }
 
+//    todo 6 - unregister the network montior change
     @Override
     protected void onPause() {
         dribbblePrefs.removeLoginStatusListener(filtersAdapter);
@@ -871,6 +873,7 @@ public class HomeActivity extends Activity {
         public void onAvailable(Network network) {
             connected = true;
             if (adapter.getDataItemCount() != 0) return;
+            // todo 7 - always remember to check this code in UI thread after the callbacks
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
