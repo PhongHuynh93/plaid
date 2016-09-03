@@ -73,6 +73,8 @@
             android:layout_margin="@dimen/spacing_huge"
             android:layout="@layout/no_filters"/>
 
+        <!--todo - 1a a viewstub is auto hide until it has been inflated -->
+        <!--todo - 1b it has a layout attr, so after inflating, it will dissappear and the layout is swapped into it-->
         <ViewStub
             android:id="@+id/stub_no_connection"
             android:layout_width="wrap_content"

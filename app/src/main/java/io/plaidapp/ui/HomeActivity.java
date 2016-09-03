@@ -830,22 +830,32 @@ public class HomeActivity extends Activity {
         }
     }
 
+    /**
+     * todo 2 - when there is no connection
+     */
     private void checkConnectivity() {
+        // check network connection
         final ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         connected = activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
+        // if there is not any active networks
         if (!connected) {
             loading.setVisibility(View.GONE);
+            // show a cloud image
             if (noConnection == null) {
                 final ViewStub stub = (ViewStub) findViewById(R.id.stub_no_connection);
                 noConnection = (ImageView) stub.inflate();
             }
+
+            // show a dot and increase it to touch the image cloud -> animate vector
             final AnimatedVectorDrawable avd =
                     (AnimatedVectorDrawable) getDrawable(R.drawable.avd_no_connection);
             noConnection.setImageDrawable(avd);
             avd.start();
 
+            // todo 3 - when there is no connection, register a receiver to receiver the notifications about all network
             connectivityManager.registerNetworkCallback(
                     new NetworkRequest.Builder()
                             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build(),
@@ -854,6 +864,8 @@ public class HomeActivity extends Activity {
         }
     }
 
+    // fixme 4 - if the network is available, this method will trigger
+    // but it didn't trigger ????
     private ConnectivityManager.NetworkCallback connectivityCallback = new ConnectivityManager.NetworkCallback() {
         @Override
         public void onAvailable(Network network) {
@@ -863,7 +875,11 @@ public class HomeActivity extends Activity {
                 @Override
                 public void run() {
                     TransitionManager.beginDelayedTransition(drawer);
+
+                    // remove the image with no connection
                     noConnection.setVisibility(View.GONE);
+
+                    // start loading data
                     loading.setVisibility(View.VISIBLE);
                     dataManager.loadAllDataSources();
                 }
