@@ -126,7 +126,7 @@ public class HomeActivity extends Activity {
     private ImageButton fabPosting;
     private GridLayoutManager layoutManager;
 
-//    todo bind resource item by butterknife
+//    todopast bind resource item by butterknife
     @BindInt(R.integer.num_columns)
     int columns;
 
