@@ -143,7 +143,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-//       todo  1 - make the screen go full
+//       todopast  1 - make the screen go full
         drawer.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -181,7 +181,7 @@ public class HomeActivity extends Activity {
         };
         adapter = new FeedAdapter(this, dataManager, columns, PocketUtils.isPocketInstalled(this));
 
-//        todo 5b - set adapter for recyclerview, listen when scroll, set anim the recyclerview
+//        todopast 5b - set adapter for recyclerview, listen when scroll, set anim the recyclerview
         grid.setAdapter(adapter);
         layoutManager = new GridLayoutManager(this, columns);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -215,7 +215,7 @@ public class HomeActivity extends Activity {
                 lpToolbar.rightMargin += insets.getSystemWindowInsetRight();
                 toolbar.setLayoutParams(lpToolbar);
 
-                // todo inset the grid top by statusbar+toolbar & the bottom by the navbar (don't clip)
+                // todopast inset the grid top by statusbar+toolbar & the bottom by the navbar (don't clip)
                 grid.setPadding(
                         grid.getPaddingLeft() + insets.getSystemWindowInsetLeft(), // landscape
                         insets.getSystemWindowInsetTop() + ViewUtils.getActionBarSize
@@ -237,7 +237,7 @@ public class HomeActivity extends Activity {
                 lpPosting.rightMargin += insets.getSystemWindowInsetRight(); // landscape
                 postingStub.setLayoutParams(lpPosting);
 
-                // todo 4b we place a background behind the status bar to combine with it's semi-transparent color to get the desired appearance.  Set it's height to the status bar height
+                // todopast 4b we place a background behind the status bar to combine with it's semi-transparent color to get the desired appearance.  Set it's height to the status bar height
                 View statusBarBackground = findViewById(R.id.status_bar_background);
                 FrameLayout.LayoutParams lpStatus = (FrameLayout.LayoutParams)
                         statusBarBackground.getLayoutParams();
@@ -292,9 +292,9 @@ public class HomeActivity extends Activity {
     }
 
     /**
-     * todo Called when an activity you launched with an activity transition exposes this Activity through a returning activity transition, giving you the resultCode and any additional data from it.
-     * todo postpone the transition  until our shared element is on-screen i.e. has been laid out
-     * todo scroll to the previous position
+     * todopast Called when an activity you launched with an activity transition exposes this Activity through a returning activity transition, giving you the resultCode and any additional data from it.
+     * todopast postpone the transition  until our shared element is on-screen i.e. has been laid out
+     * todopast scroll to the previous position
      * chạy khi ta có transition từ activity sang activity kia, và act kia đang nav lại act này
      *
      * @param resultCode
@@ -483,7 +483,7 @@ public class HomeActivity extends Activity {
             };
 
     /**
-     * todo - add scroll listener that when we croll down, the toolbar ele is lower to hide itself
+     * todopast - add scroll listener that when we croll down, the toolbar ele is lower to hide itself
      */
     private RecyclerView.OnScrollListener toolbarElevation = new RecyclerView.OnScrollListener() {
         @Override
