@@ -85,7 +85,7 @@ public class HtmlUtils {
         final SpannableString plainLinks = new SpannableString(input); // copy of input
 
         // Linkify doesn't seem to work as expected on M+
-        // TODO: figure out why
+        // : figure out why
         //Linkify.addLinks(plainLinks, Linkify.WEB_URLS);
 
         final URLSpan[] urlSpans = plainLinks.getSpans(0, plainLinks.length(), URLSpan.class);

@@ -68,7 +68,7 @@ public class SourceManager {
                                 .DESIGNER_NEWS_QUERY_PREFIX, ""),
                         prefs.getBoolean(sourceKey, false)));
             } else {
-                // TODO improve this O(n2) search
+                //  improve this O(n2) search
                 sources.add(getSource(context, sourceKey, prefs.getBoolean(sourceKey, false)));
             }
         }

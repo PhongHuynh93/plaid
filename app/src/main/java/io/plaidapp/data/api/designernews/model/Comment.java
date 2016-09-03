@@ -40,7 +40,7 @@ public class Comment implements Parcelable {
     public final String user_job;
     public final List<Comment> comments;
 
-    // TODO move this to a decorator
+    //  move this to a decorator
     public Boolean upvoted;
 
     public Comment(long id,

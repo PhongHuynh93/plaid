@@ -36,7 +36,7 @@ public class Comment {
     public final Date updated_at;
     public final User user;
     public long likes_count;
-    // todo move this into a decorator
+    //  move this into a decorator
     public Boolean liked;
     public Spanned parsedBody;
 

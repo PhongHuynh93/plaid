@@ -134,6 +134,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
+//         1
         drawer.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -347,7 +348,7 @@ public class HomeActivity extends Activity {
                     dribbblePrefs.login(HomeActivity.this);
                 } else {
                     dribbblePrefs.logout();
-                    // TODO something better than a toast!!
+                    //  something better than a toast!!
                     Toast.makeText(getApplicationContext(), R.string.dribbble_logged_out, Toast
                             .LENGTH_SHORT).show();
                 }
@@ -357,7 +358,7 @@ public class HomeActivity extends Activity {
                     startActivity(new Intent(this, DesignerNewsLogin.class));
                 } else {
                     designerNewsPrefs.logout();
-                    // TODO something better than a toast!!
+                    //  something better than a toast!!
                     Toast.makeText(getApplicationContext(), R.string.designer_news_logged_out,
                             Toast.LENGTH_SHORT).show();
                 }
@@ -668,7 +669,7 @@ public class HomeActivity extends Activity {
         // set a silhouette icon in overview as the launcher icon is a bit busy
         // and looks bad on top of colorPrimary
         //Bitmap overviewIcon = ImageUtils.vectorToBitmap(this, R.drawable.ic_launcher_silhouette);
-        // TODO replace launcher icon with a monochrome version from RN.
+        //  replace launcher icon with a monochrome version from RN.
         Bitmap overviewIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         setTaskDescription(new ActivityManager.TaskDescription(getString(R.string.app_name),
                 overviewIcon,

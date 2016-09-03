@@ -231,7 +231,7 @@ public class InkPageIndicator extends View implements ViewPager.OnPageChangeList
         for (int i = 0; i < pageCount; i++) {
             dotCenterX[i] = startLeft + i * (dotDiameter + gap);
         }
-        // todo just top aligning for now… should make this smarter
+        //  just top aligning for now… should make this smarter
         dotTopY = top;
         dotCenterY = top + dotRadius;
         dotBottomY = top + dotDiameter;
@@ -599,7 +599,7 @@ public class InkPageIndicator extends View implements ViewPager.OnPageChangeList
         moveSelected.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                // todo avoid autoboxing
+                //  avoid autoboxing
                 selectedDotX = (Float) valueAnimator.getAnimatedValue();
                 retreatAnimation.startIfNecessary(selectedDotX);
                 postInvalidateOnAnimation();
@@ -718,7 +718,7 @@ public class InkPageIndicator extends View implements ViewPager.OnPageChangeList
                 addUpdateListener(new AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        // todo avoid autoboxing
+                        //  avoid autoboxing
                         retreatingJoinX1 = (Float) valueAnimator.getAnimatedValue();
                         postInvalidateOnAnimation();
                         // start any reveal animations if we've passed them
@@ -738,7 +738,7 @@ public class InkPageIndicator extends View implements ViewPager.OnPageChangeList
                 addUpdateListener(new AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        // todo avoid autoboxing
+                        //  avoid autoboxing
                         retreatingJoinX2 = (Float) valueAnimator.getAnimatedValue();
                         postInvalidateOnAnimation();
                         // start any reveal animations if we've passed them
@@ -788,7 +788,7 @@ public class InkPageIndicator extends View implements ViewPager.OnPageChangeList
             addUpdateListener(new AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    // todo avoid autoboxing
+                    //  avoid autoboxing
                     setDotRevealFraction(PendingRevealAnimator.this.dot,
                             (Float) valueAnimator.getAnimatedValue());
                 }

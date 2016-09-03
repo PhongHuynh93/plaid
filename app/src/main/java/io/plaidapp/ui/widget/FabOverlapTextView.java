@@ -142,7 +142,7 @@ public class FabOverlapTextView extends View {
 
     public void setFabOverlapGravity(int fabGravity) {
         // we only really support [top|bottom][left|right|start|end]
-        // TODO validate input
+        //  validate input
         this.fabGravity = GravityCompat.getAbsoluteGravity(fabGravity, getLayoutDirection());
     }
 

@@ -56,7 +56,7 @@ public class UpvoteStoryService extends IntentService {
         if (storyId == 0l) return;
         final DesignerNewsPrefs designerNewsPrefs = DesignerNewsPrefs.get(this);
         if (!designerNewsPrefs.isLoggedIn()) {
-            // TODO prompt for login
+            //  prompt for login
             return;
         }
 
@@ -64,9 +64,9 @@ public class UpvoteStoryService extends IntentService {
         try {
             final Response<StoryResponse> response = upvoteStoryCall.execute();
             final int newVotesCount = response.body().story.vote_count;
-            // TODO report success
+            //  report success
         } catch (Exception e) {
-            // TODO report failure
+            //  report failure
         }
     }
 }

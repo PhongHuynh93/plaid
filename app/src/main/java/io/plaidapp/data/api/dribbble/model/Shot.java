@@ -58,7 +58,7 @@ public class Shot extends PlaidItem implements Parcelable {
     public final List<String> tags;
     public User user;
     public final Team team;
-    // todo move this into a decorator
+    //  move this into a decorator
     public boolean hasFadedIn = false;
     public Spanned parsedDescription;
 

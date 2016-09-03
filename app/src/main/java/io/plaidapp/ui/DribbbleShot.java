@@ -231,7 +231,7 @@ public class DribbbleShot extends Activity {
         switch (requestCode) {
             case RC_LOGIN_LIKE:
                 if (resultCode == RESULT_OK) {
-                    // TODO when we add more authenticated actions will need to keep track of what
+                    //  when we add more authenticated actions will need to keep track of what
                     // the user was trying to do when forced to login
                     fab.setChecked(true);
                     doLike();
@@ -544,7 +544,7 @@ public class DribbbleShot extends Activity {
                         }
                     });
 
-            // TODO should keep the background if the image contains transparency?!
+            //  should keep the background if the image contains transparency?!
             imageView.setBackground(null);
             return false;
         }
@@ -987,7 +987,7 @@ public class DribbbleShot extends Activity {
                         @Override
                         public void onResponse(Call<List<Like>> call,
                                                Response<List<Like>> response) {
-                            // TODO something better than this.
+                            //  something better than this.
                             StringBuilder sb = new StringBuilder("Liked by:\n\n");
                             for (Like like : response.body()) {
                                 if (like.user != null) {
